@@ -1,20 +1,20 @@
-def calculate_eight_year_gain(fname):
-    '''
-    Calculates the stock gain from 9-1-2000 Open price to 3-7-2008 close price for
-    10 shares of stock
+# Template
+def count_department():
+    """ 
     input:
-        fname - str, aapl stock price filename
+        -
     output:
-        gain - float, monetary gain during period
-    '''
-    # open file
-    with open(fname) as f:
-        # read in lines
-        lines = f.readlines()
-        # get 9-1-2000 open price
-        open_price = float(lines[0].split(',')[1])
-        # get 3-7-2008 close price
-        close_price = float(lines[-1].split(',')[4])
-    # calculate gain
-    gain = (close_price - open_price) * 10
-    return gain
+        number_of_dept- list (key: majors, values: number of people who have the major)
+                        ex：[['Engineering', 10], ['Nursing', 17], ... ]
+    
+    """
+    from glob import glob
+    filenames = glob('rosters/*txt') #list of file names in the folder
+    number_of_dept = []
+    for file_name in filenames:
+        with open(file_name, 'r') as f:
+            for line in f:
+                if line.startswith('Department'):
+                    dept = line.split(':')[1].strip()
+                    number_of_dept.append([dept, 0])
+                    break
